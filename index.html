@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/favicon-32x32.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <title>Tip calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .tip-btn.active {
+            background-color: #26c0ab;
+            /* StrongCyan */
+            color: #00494d;
+            /* VeryDarkCyan */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w-full h-full lg:h-screen bg-LightGrayishCyan flex flex-col justify-center items-center">
+        <div class="flex flex-col space-y-2 py-5 mb-5">
+            <div class="text-2xl font-bold text-VeryDarkCyan tracking-widest">
+                SPLI
+            </div>
+            <div class="text-2xl font-bold  text-VeryDarkCyan tracking-widest">
+                TTER
+            </div>
+        </div>
+        <div
+            class="flex flex-col lg:flex-row w-full bg-white lg:rounded-3xl rounded-t-3xl p-5 space-y-8 lg:space-y-0  lg:space-x-8 lg:w-[55%]">
+            <div class="flex flex-col space-y-8">
+                <div class="flex flex-col space-y-2 ">
+                    <div class="flex flex-row justify-between items-center">
+                        <label for="" class="text-[18px] font-bold text-GrayishCyan">Bill</label>
+                        <p class="font-bold text-red-400 tracking-wide" id="errorMessageBill"></p>
+                    </div>
+                    <div
+                        class="flex flex-row items-center justify-between bg-VeryLightGrayishCyan w-full h-11 px-5 rounded-md cursor-pointer hover:border-2 hover:border-StrongCyan duration-75">
+                        <img src="images/icon-dollar.svg" alt="" class="h-6">
+                        <input type="number" name="" id="totalbill"
+                            class="bg-VeryLightGrayishCyan  text-VeryDarkCyan font-bold appearance-none focus:outline-none placeholder:text-end text-end text-xl "
+                            min="0" placeholder="0.0">
+                    </div>
+                </div>
+                <div class="flex flex-col space-y-2 w-full">
+                    <label for="" class="text-[18px] font-bold text-GrayishCyan tracking-wide">Select Tip %</label>
+                    <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
+                        <div id="tip5%" data-type="5"
+                            class="bg-VeryDarkCyan tip-btn hover:bg-LightGrayishCyan hover:text-VeryDarkCyan duration-150 text-White text-sm lg:text-xl font-bold w-full h-12 rounded-md cursor-pointer flex justify-center items-center">
+                            5 %
+                        </div>
+                        <div id="tip10%" data-type="10"
+                            class="bg-VeryDarkCyan tip-btn hover:bg-LightGrayishCyan hover:text-VeryDarkCyan duration-150 text-White text-sm lg:text-xl font-bold w-full h-12 rounded-md cursor-pointer flex justify-center items-center">
+                            10
+                            %</div>
+                        <div id="tip15%" data-type="15"
+                            class="bg-VeryDarkCyan tip-btn hover:bg-LightGrayishCyan hover:text-VeryDarkCyan duration-150 text-White text-sm lg:text-xl font-bold w-full h-12 rounded-md cursor-pointer flex justify-center items-center">
+                            15
+                            %</div>
+                        <div id="tip25%" data-type="25"
+                            class="bg-VeryDarkCyan tip-btn hover:bg-LightGrayishCyan hover:text-VeryDarkCyan duration-150 text-White text-sm lg:text-xl font-bold w-full h-12 rounded-md cursor-pointer flex justify-center items-center">
+                            25
+                            %</div>
+                        <div id="tip50%" data-type="50"
+                            class="bg-VeryDarkCyan tip-btn hover:bg-LightGrayishCyan hover:text-VeryDarkCyan duration-150 text-White text-sm lg:text-xl font-bold w-full h-12 rounded-md cursor-pointer flex justify-center items-center">
+                            50
+                            %</div>
+                        <input type="number" id="customTip"
+                            class="bg-VeryLightGrayishCyan text-GrayishCyan outline-StrongCyan duration-150 text-sm lg:text-xl font-bold w-full h-12 rounded-md cursor-pointer flex justify-center items-center text-center"
+                            placeholder="Custom">
+                    </div>
+                </div>
+                <div class="flex flex-col space-y-2">
+                    <div class="flex flex-row justify-between items-center">
+                        <label for="" class="text-[18px] font-bold text-GrayishCyan">Number of people</label>
+                        <p class="font-bold text-red-400 tracking-wide" id="errorMessagePeople"></p>
+                    </div>
+                    <div
+                        class="flex flex-row items-center justify-between bg-VeryLightGrayishCyan w-full h-11 px-5 rounded-md cursor-pointer hover:border-2 hover:border-StrongCyan duration-75">
+                        <img src="images/icon-person.svg" alt="" class="h-6">
+                        <input type="number" name="" id="numberOfPeople"
+                            class="bg-VeryLightGrayishCyan  text-VeryDarkCyan font-bold appearance-none focus:outline-none placeholder:text-end text-end text-xl"
+                            min="0" placeholder="0.0">
+                    </div>
+                </div>
+            </div>
+            <div
+                class="w-full h-full bg-VeryDarkCyan rounded-xl flex flex-col justify-between space-y-4 px-4 py-6 lg:px-8">
+                <div class="flex flex-col space-y-4">
+                    <div class="flex flex-row justify-between items-center">
+                        <div class="flex flex-col space-y-1">
+                            <h1 class="text-LightGrayishCyan font-bold text-lg">Tip Amount</h1>
+                            <p class="text-GrayishCyan font-bold">/ person</p>
+                        </div>
+                        <div>
+                            <h1 class="font-bold text-lg lg:text-4xl text-StrongCyan" id="tipTotal">
+                                $ 0.00
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center">
+                        <div class="flex flex-col space-y-1">
+                            <h1 class="text-LightGrayishCyan font-bold text-lg">Total</h1>
+                            <p class="text-GrayishCyan font-bold">/ person</p>
+                        </div>
+                        <div>
+                            <h1 class="font-bold text-lg lg:text-4xl text-StrongCyan" id="perPerson">
+                                $ 0.00
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div id="resetBtn"
+                    class="w-full h-12 bg-StrongCyan flex justify-center items-center font-bold text-VeryDarkCyan text-xl rounded-md cursor-pointer hover:bg-LightGrayishCyan duration-150">
+                    RESET
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
