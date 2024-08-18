@@ -11,6 +11,9 @@ function calculateTip(tipPercentage) {
     const bill = parseFloat(totalBill.value);
     const people = parseInt(numberOfPeople.value);
 
+    console.log(`Bill: ${bill}, People: ${people}, Tip Percentage: ${tipPercentage}`);
+
+    // Validate bill input
     if (isNaN(bill) || bill <= 0) {
         document.getElementById("errorMessageBill").textContent = "Can't be zero";
         totalBill.classList.add("border-red-500");
@@ -20,6 +23,7 @@ function calculateTip(tipPercentage) {
         totalBill.classList.remove("border-red-500");
     }
 
+    // Validate number of people input
     if (isNaN(people) || people <= 0) {
         document.getElementById("errorMessagePeople").textContent = "Can't be zero";
         numberOfPeople.classList.add("border-red-500");
@@ -29,10 +33,20 @@ function calculateTip(tipPercentage) {
         numberOfPeople.classList.remove("border-red-500");
     }
 
+    // Check if tipPercentage is a valid number
+    if (isNaN(tipPercentage) || tipPercentage <= 0) {
+        console.error("Invalid tip percentage");
+        return;
+    }
+
+    // Calculate tip and total amounts
     const tipAmount = (bill * tipPercentage) / 100;
     const totalAmount = bill + tipAmount;
     const perPersonAmount = totalAmount / people;
 
+    console.log(`Tip Amount: ${tipAmount}, Total Amount: ${totalAmount}, Per Person Amount: ${perPersonAmount}`);
+
+    // Update the display with the calculated values
     tipTotal.textContent = `$${tipAmount.toFixed(2)}`;
     perPerson.textContent = `$${perPersonAmount.toFixed(2)}`;
 }
@@ -47,8 +61,19 @@ tipButtons.forEach(button => {
         // Add active class to clicked button
         button.classList.add("active");
 
-        const tipValue = parseFloat(button.getAttribute("data-tip"));
-        calculateTip(tipValue);
+        const tipValueStr = button.getAttribute("data-type");
+        console.log(`Button Tip Value (String): ${tipValueStr}`);
+        if (tipValueStr) {
+            const tipValue = parseFloat(tipValueStr);
+            console.log(`Parsed Tip Value: ${tipValue}`);
+            if (!isNaN(tipValue)) {
+                calculateTip(tipValue);
+            } else {
+                console.error("Invalid tip value from button");
+            }
+        } else {
+            console.error("data-tip attribute is missing or empty");
+        }
     });
 });
 
@@ -58,12 +83,15 @@ customTip.addEventListener("input", () => {
     tipButtons.forEach(btn => btn.classList.remove("active"));
 
     const tipValue = parseFloat(customTip.value);
+    console.log(`Custom Tip Value: ${tipValue}`);
     if (!isNaN(tipValue) && tipValue > 0) {
         calculateTip(tipValue);
+    } else {
+        console.error("Invalid custom tip value");
     }
 });
 
-// Reset button 
+// Reset button
 resetBtn.addEventListener("click", () => {
     totalBill.value = '';
     numberOfPeople.value = '';
